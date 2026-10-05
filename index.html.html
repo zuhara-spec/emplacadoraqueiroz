@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Emplacadora Queiroz - Despachante de Veículos em Vitória da Conquista. Agilidade e segurança para emplacamento, transferência e regularização do seu veículo.">
+    <title>Emplacadora Queiroz | Despachante de Veículos</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #ffc107;
+            --dark-color: #1a1a2e;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #fff !important;
+        }
+        .navbar-brand span {
+            color: var(--secondary-color);
+        }
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin-left: 1rem;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(13, 110, 253, 0.8)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--light-bg), transparent);
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .btn-custom {
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .btn-primary-custom {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+        }
+        .btn-primary-custom:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            color: #6c757d;
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Services Cards */
+        .service-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-bottom-color: var(--primary-color);
+        }
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s;
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .service-card h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--light-bg);
+        }
+        .about-img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+        .about-list li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        .about-list li i {
+            color: var(--primary-color);
+            margin-right: 0.8rem;
+        }
+
+        /* Stats */
+        .stats-item {
+            text-align: center;
+            padding: 2rem;
+        }
+        .stats-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .stats-item h3 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Contact Info */
+        .contact-info-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: transform 0.3s;
+        }
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+        }
+        .contact-info-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: #aaa;
+            padding: 3rem 0 1.5rem;
+        }
+        footer h5 {
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Policy Modal */
+        .modal-content {
+            border-radius: 15px;
+        }
+        .modal-header {
+            background-color: var(--primary-color);
+            color: #fff;
+            border-radius: 15px 15px 0 0;
+        }
+        .modal-body {
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .modal-body h6 {
+            margin-top: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-car-side me-2"></i>Emplacadora <span>Queiroz</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#servicos">Serviços</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h1>Agilidade e Segurança para o seu Veículo</h1>
+                    <p class="lead">Somos especialistas em despachante e emplacamento de veículos em Vitória da Conquista e região. Cuidamos de toda a burocracia para você.</p>
+                    <a href="#contato" class="btn btn-primary-custom btn-custom me-2">
+                        <i class="fas fa-file-signature me-2"></i>Solicitar Orçamento
+                    </a>
+                    <a href="https://wa.me/5577981636516" target="_blank" class="btn btn-outline-light btn-custom">
+                        <i class="fab fa-whatsapp me-2"></i>Fale Conosco
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Nossos Serviços</h2>
+                <p class="section-subtitle">Oferecemos uma gama completa de serviços para regularizar e emplacar o seu veículo com total comodidade.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-id-card"></i></div>
+                        <h4>Emplacamento</h4>
+                        <p>Primeiro emplacamento, troca de placa e lacração de veículos novos ou usados.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <h4>Transferência</h4>
+                        <p>Transferência de propriedade, mudança de município e comunicação de venda.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-file-invoice"></i></div>
+                        <h4>Licenciamento</h4>
+                        <p>Emissão de CRLV, pagamento de IPVA e taxas, além de regularização de débitos.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-gavel"></i></div>
+                        <h4>Regularização</h4>
+                        <p>Baixa de veículo, segunda via de documentos, recursos de multas e mais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="about-section py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2070&auto=format&fit=crop" alt="Equipe Emplacadora Queiroz" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h2 class="section-title text-start mb-4" style="display: block;">Sobre a Emplacadora Queiroz</h2>
+                    <p>A <strong>Emplacadora Queiroz</strong> (Dss Serviços de Despachantes Para Emplacamento de Veículos LTDA) é uma empresa sediada em Vitória da Conquista - BA, especializada em descomplicar a vida de quem precisa regularizar seu veículo.</p>
+                    <p>Com uma equipe experiente e comprometida, oferecemos um atendimento personalizado e transparente, garantindo que todo o processo seja realizado de forma rápida e segura, seguindo rigorosamente as normas do CONTRAN e DETRAN.</p>
+                    <ul class="about-list mt-4">
+                        <li><i class="fas fa-check-circle"></i> Atendimento ágil e humanizado</li>
+                        <li><i class="fas fa-check-circle"></i> Segurança jurídica em todos os processos</li>
+                        <li><i class="fas fa-check-circle"></i> Acompanhamento completo do início ao fim</li>
+                        <li><i class="fas fa-check-circle"></i> Melhor custo-benefício da região</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stats-item">
+                        <i class="fas fa-car"></i>
+                        <h3>+500</h3>
+                        <p>Veículos Regularizados</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-item">
+                        <i class="fas fa-smile"></i>
+                        <h3>100%</h3>
+                        <p>Clientes Satisfeitos</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-item">
+                        <i class="fas fa-clock"></i>
+                        <h3>24h</h3>
+                        <p>Suporte via WhatsApp</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>100%</h3>
+                        <p>Processos Seguros</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-5" style="background-color: var(--light-bg);">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-subtitle">Estamos prontos para atender você. Escolha o canal de sua preferência.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="contact-info-card text-center">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h5>Endereço</h5>
+                        <p>Rua Humberto de Campos, 160<br>Jurema<br>Vitória da Conquista - BA<br>CEP: 45023-140</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card text-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <h5>Telefone / WhatsApp</h5>
+                        <p><a href="tel:+5577981636516" class="text-decoration-none text-dark">(77) 98163-6516</a></p>
+                        <a href="https://wa.me/5577981636516" target="_blank" class="btn btn-success btn-sm mt-2">
+                            <i class="fab fa-whatsapp me-1"></i> Chamar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-info-card text-center">
+                        <i class="fas fa-envelope"></i>
+                        <h5>E-mail</h5>
+                        <p><a href="mailto:contato@fabiocontabil.cm.br" class="text-decoration-none text-dark">contato@fabiocontabil.cm.br</a></p>
+                        <p class="small text-muted mt-2">Atendimento de Seg. a Sex. das 08h às 18h</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Informações da Empresa -->
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <div class="p-4 bg-white rounded shadow-sm">
+                        <h5 class="mb-3">Informações da Empresa</h5>
+                        <p class="mb-1"><strong>Razão Social:</strong> Dss Serviços de Despachantes Para Emplacamento de Veículos LTDA</p>
+                        <p class="mb-1"><strong>CNPJ:</strong> 67.523.386/0001-97</p>
+                        <p class="mb-1"><strong>Nome Fantasia:</strong> Emplacadora Queiroz</p>
+                        <p class="mb-0"><strong>Situação:</strong> Ativa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="fas fa-car-side me-2"></i>Emplacadora Queiroz</h5>
+                    <p>Sua parceira de confiança para todos os serviços de despachante e emplacamento de veículos em Vitória da Conquista e região.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Links Rápidos</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Políticas</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Política de Privacidade</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p class="mb-0">&copy; 2025 Emplacadora Queiroz. Todos os direitos reservados. | CNPJ: 67.523.386/0001-97</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Política de Privacidade</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>A <strong>Emplacadora Queiroz</strong> (Dss Serviços de Despachantes Para Emplacamento de Veículos LTDA), inscrita no CNPJ 67.523.386/0001-97, valoriza a sua privacidade e está comprometida com a proteção dos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).</p>
+                    
+                    <h6>1. Coleta de Informações</h6>
+                    <p>Coletamos apenas as informações necessárias para a prestação dos serviços de despachante e emplacamento, incluindo: nome completo, CPF/CNPJ, endereço, telefone, e-mail e dados do veículo (renavam, placa, chassi).</p>
+                    
+                    <h6>2. Uso das Informações</h6>
+                    <p>Seus dados são utilizados exclusivamente para:
+                        <ul>
+                            <li>Execução dos serviços contratados junto aos órgãos competentes (DETRAN, Receita Federal, etc.);</li>
+                            <li>Comunicação sobre o andamento dos processos;</li>
+                            <li>Envio de comunicações informativas, caso autorizado.</li>
+                        </ul>
+                    </p>
+                    
+                    <h6>3. Compartilhamento de Dados</h6>
+                    <p>Seus dados poderão ser compartilhados apenas com órgãos públicos e entidades necessárias para a realização dos serviços contratados, sempre em conformidade com a legislação vigente. Não vendemos ou alugamos seus dados a terceiros.</p>
+                    
+                    <h6>4. Segurança</h6>
+                    <p>Adotamos medidas técnicas e administrativas para proteger seus dados contra acessos não autorizados, perda, alteração ou destruição.</p>
+                    
+                    <h6>5. Seus Direitos</h6>
+                    <p>Você tem o direito de solicitar acesso, correção, exclusão ou portabilidade dos seus dados pessoais. Para exercer esses direitos, entre em contato pelo e-mail: contato@fabiocontabil.cm.br.</p>
+                    
+                    <h6>6. Cookies</h6>
+                    <p>Nosso site pode utilizar cookies para melhorar a experiência de navegação. Você pode gerenciar as configurações de cookies no seu navegador.</p>
+                    
+                    <h6>7. Alterações nesta Política</h6>
+                    <p>Esta política pode ser atualizada periodicamente. Recomendamos a revisão regular desta página.</p>
+                    
+                    <p class="mt-4 text-muted"><small>Última atualização: Outubro de 2025.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Termos de Uso</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Ao utilizar os serviços da <strong>Emplacadora Queiroz</strong>, você concorda com os termos e condições abaixo:</p>
+                    
+                    <h6>1. Serviços Prestados</h6>
+                    <p>A Emplacadora Queiroz atua como intermediadora de serviços de despachante junto aos órgãos competentes, não sendo responsável por decisões administrativas ou políticas destes órgãos.</p>
+                    
+                    <h6>2. Responsabilidades do Cliente</h6>
+                    <p>O cliente é responsável pela veracidade das informações fornecidas e pela entrega de documentos originais necessários para a execução dos serviços.</p>
+                    
+                    <h6>3. Prazos</h6>
+                    <p>Os prazos para conclusão dos serviços dependem dos órgãos competentes e podem variar. A Emplacadora Queiroz se compromete a acompanhar e informar o cliente sobre o andamento.</p>
+                    
+                    <h6>4. Pagamentos</h6>
+                    <p>Os valores dos serviços e taxas serão informados previamente. O pagamento poderá ser feito via dinheiro, PIX ou cartão, conforme disponibilidade.</p>
+                    
+                    <h6>5. Cancelamento</h6>
+                    <p>Em caso de desistência, o cliente deverá comunicar imediatamente. Valores já pagos a órgãos públicos não são reembolsáveis.</p>
+                    
+                    <h6>6. Propriedade Intelectual</h6>
+                    <p>Todo o conteúdo deste site é de propriedade da Emplacadora Queiroz, sendo proibida a reprodução sem autorização.</p>
+                    
+                    <p class="mt-4 text-muted"><small>Última atualização: Outubro de 2025.</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(26, 26, 46, 0.98)';
+                navbar.style.padding = '0.5rem 0';
+            } else {
+                navbar.style.backgroundColor = 'rgba(26, 26, 46, 0.95)';
+                navbar.style.padding = '1rem 0';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll (simple)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .contact-info-card, .stats-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
